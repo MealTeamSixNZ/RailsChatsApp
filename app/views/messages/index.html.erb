@@ -1,0 +1,20 @@
+<h1>Messages#index</h1>
+<p>Find me in app/views/messages/index.html.erb</p>
+
+<ul>
+  <% @messages.each do | message | %>
+    <li>
+      <%= message.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_with model: @message do |form| %>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_field :content %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
