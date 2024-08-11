@@ -1,10 +1,13 @@
 <h1>Messages#index</h1>
 <p>Find me in app/views/messages/index.html.erb</p>
 
+<%= current_user.email %>
+
 <ul>
   <% @messages.each do | message | %>
     <li>
       <%= message.content %>
+      <%= message.sender_id %>
     </li>
   <% end %>
 </ul>

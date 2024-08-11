@@ -2,17 +2,16 @@
 
 
 ## Currently running:
-
-
-## To do:
 * Concepting users
 * Database for users, DMs, messages, & sessions
 * hashed passwords
 * per user salted passwords
 * Sessions
 * Log in & out
-* User to user message sending
 * Sign up/create user
+
+## To do:
+* User to user message sending
 * Bring Websockets back #fashun
 * Global chat (notice board) working
 * Tidy up websocket and types

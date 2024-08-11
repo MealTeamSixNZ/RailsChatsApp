@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @messages = Message.all
     @message = Message.new
@@ -6,11 +7,13 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    @message.sender_id = current_user.id
 
     if @message.save
       redirect_to @message
     else
-      render :new, status: :bad_request
+      @messages = Message.all
+      render :index, status: :bad_request
     end
   end
 
