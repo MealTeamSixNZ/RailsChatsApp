@@ -23,6 +23,11 @@
 * Device/session based message encryption
 * Messages saved on device not in DB
 
+sender id important for auditing (internal id)
+recipient id important (who the message is going to, nil when notice board)
+message type (area coord or dispatcher, notice board)
+area id (qtown/ashburton/etc)
+expiry nullable 
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

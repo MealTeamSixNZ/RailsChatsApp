@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_04_200509) do
-  create_table "messages", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "sender_id"
-    t.index ["sender_id"], name: "index_messages_on_sender_id"
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_202348) do
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "drivers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -27,9 +23,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_200509) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_drivers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "messages", "users", column: "sender_id"
+  create_table "messages", force: :cascade do |t|
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "driver_id", null: false
+    t.string "type", null: false
+    t.integer "staff_id"
+    t.index ["driver_id"], name: "index_messages_on_driver_id"
+    t.index ["staff_id"], name: "index_messages_on_staff_id"
+  end
+
+  create_table "staff", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "role", null: false
+    t.string "email", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "messages", "drivers"
+  add_foreign_key "messages", "staff"
 end
