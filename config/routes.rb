@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :drivers
+  devise_for :staff
   # get 'messages/index'
   root 'messages#index'
 

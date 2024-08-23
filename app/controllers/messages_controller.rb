@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_driver!
   def index
     @messages = Message.all
     @message = Message.new
@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    @message.sender_id = current_user.id
+    @message.driver_id = current_driver.id
 
     if @message.save
       redirect_to @message

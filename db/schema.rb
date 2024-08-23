@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_22_202348) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_23_203832) do
   create_table "areas", force: :cascade do |t|
     t.string "name"
   end
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_202348) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "area_id"
+    t.index ["area_id"], name: "index_drivers_on_area_id"
     t.index ["email"], name: "index_drivers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
@@ -39,13 +41,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_202348) do
   end
 
   create_table "staff", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "role", null: false
     t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_staff_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_staff_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "drivers", "areas"
   add_foreign_key "messages", "drivers"
   add_foreign_key "messages", "staff"
 end
