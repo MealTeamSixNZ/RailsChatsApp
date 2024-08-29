@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_23_203832) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_23_210753) do
   create_table "areas", force: :cascade do |t|
     t.string "name"
   end
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_203832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "driver_id", null: false
-    t.string "type", null: false
+    t.string "message_type", null: false
     t.integer "staff_id"
     t.index ["driver_id"], name: "index_messages_on_driver_id"
     t.index ["staff_id"], name: "index_messages_on_staff_id"

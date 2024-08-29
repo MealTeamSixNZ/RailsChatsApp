@@ -8,12 +8,12 @@
 * per user salted passwords
 * Sessions
 * Log in & out
-* Sign up/create user
+* Sign up/create drivers & staff
 
 ## To do:
-* User to user message sending
+* driver to staff message sending
+* area noticeboard
 * Bring Websockets back #fashun
-* Global chat (notice board) working
 * Tidy up websocket and types
 * Websocket features: ~~onine~~, typing, ~~emojis~~
 

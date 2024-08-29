@@ -1,19 +1,40 @@
 <h1>Messages#index</h1>
 <p>Find me in app/views/messages/index.html.erb</p>
 
-<%= current_user.email %>
+<%= current_driver.email %><br>
 
 <ul>
-  <% @messages.each do | message | %>
+  <% @dispatch_messages.each do | message | %>
     <li>
       <%= message.content %>
-      <%= message.sender_id %>
+      <%= message.driver_id %>
     </li>
   <% end %>
 </ul>
 
 <%= form_with model: @message do |form| %>
   <div>
+    <%= form.hidden_field :message_type, value:"D" %>
+    <%= form.label :content %><br>
+    <%= form.text_field :content %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<ul>
+  <% @area_messages.each do | message | %>
+    <li>
+      <%= message.content %>
+      <%= message.driver_id %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_with model: @message do |form| %>
+  <div>
+    <%= form.hidden_field :message_type, value:"A" %>
     <%= form.label :content %><br>
     <%= form.text_field :content %>
   </div>
