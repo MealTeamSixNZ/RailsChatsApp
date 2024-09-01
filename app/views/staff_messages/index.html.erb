@@ -1,0 +1,21 @@
+<h2>Areas</h2>
+<h3><%= @area_id %></h3>
+<ul>
+  <% @areas.each do | area | %>
+  <li>
+    <%= link_to area.name, staff_messages_path(area_id:area.id) %>
+  </li>
+  <% end %>
+</ul>
+<% if @drivers != nil %>
+  <h2>Drivers</h2>
+  <ul>
+    <% @drivers.each do | driver | %>
+      <li>
+        <%= link_to driver.email, staff_message_path(driver.id)%>
+      </li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>Select an area to display drivers</p>
+<% end %>
