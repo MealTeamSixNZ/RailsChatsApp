@@ -1,4 +1,6 @@
 <h2>Areas</h2>
+<p>You're signed in as <%= current_staff.email %> <%= link_to "Log oot", destroy_staff_session_path, "data-turbo-method": :delete %></p>
+
 <h3><%= @area_id %></h3>
 <ul>
   <% @areas.each do | area | %>

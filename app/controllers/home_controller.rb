@@ -1,12 +1,11 @@
 class HomeController < ApplicationController
   def index
-  end
-
-  def staff_only
-    before_action :authenticate_staff!
-  end
-
-  def drivers_only
-    before_action :authenticate_driver!
+    if staff_signed_in?
+      redirect_to staff_messages_path
+    elsif driver_signed_in?
+      redirect_to messages_path
+    else
+      render :index
+    end
   end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :drivers
   devise_for :staff
   # get 'messages/index'
-  root 'messages#index'
+  root 'home#index'
 
   # get 'home/index'
   resources :messages

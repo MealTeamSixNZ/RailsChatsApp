@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.driver_id = current_driver.id
-    # @message.message_type = "D"
 
     if @message.save
       redirect_to @message
@@ -21,6 +20,6 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :message_type)
   end
 end

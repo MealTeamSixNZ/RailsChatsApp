@@ -1,12 +1,13 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+<h1>Driver Chat!</h1>
+<p>You're signed in as <%= current_driver.email %> <%= link_to "Log oot", destroy_driver_session_path, "data-turbo-method": :delete %></p>
 
-<%= current_driver.email %><br>
 
 <ul>
   <% @dispatch_messages.each do | message | %>
     <li>
       <%= message.content %>
+      <%= message.message_type %>
+      <%= if message.staff_id == nil then "Me" else "Staff" end %>
       <%= message.driver_id %>
     </li>
   <% end %>
