@@ -1,6 +1,7 @@
 class StaffMessagesController < ApplicationController
   before_action :authenticate_staff!
 
+
   def index
     @areas = Area.all
     args = params.permit(:area_id)
@@ -15,6 +16,8 @@ class StaffMessagesController < ApplicationController
     @driver = Driver.find(params[:id])
     @message = Message.new
     @dispatch_messages = Message.get_dispatch_messages_for_driver(@driver.id)
+    @is_staff_dispatcher = is_staff_dispatcher?
+    @area_messages = Message.get_area_messages_for_driver(@driver.id)
   end
 
   def create
@@ -36,4 +39,9 @@ class StaffMessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content, :message_type, :driver_id)
   end
+
+  def is_staff_dispatcher?
+    current_staff.staff_type == "D"
+  end
+
 end

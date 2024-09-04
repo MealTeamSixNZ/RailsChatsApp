@@ -22,3 +22,27 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<% unless @is_staff_dispatcher %>
+  <ul>
+    <% @area_messages.each do | message | %>
+      <li>
+        <%= message.content %>
+        <%= message.staff_id %>
+        <%= message.driver_id %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= form_for @message, :url => {:controller => "staff_messages", :action => "create"} do |form| %>
+    <div>
+      <%= form.hidden_field :message_type, value:"A" %>
+      <%= form.hidden_field :driver_id, value:@driver.id %>
+      <%= form.label :content %><br>
+      <%= form.text_field :content %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>
