@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_04_201115) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_05_201337) do
   create_table "areas", force: :cascade do |t|
     t.string "name"
   end
@@ -40,6 +40,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_201115) do
     t.index ["staff_id"], name: "index_messages_on_staff_id"
   end
 
+  create_table "notices", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.date "start_date"
+    t.time "start_time"
+    t.date "end_date"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "created_by_id"
+    t.index ["created_by_id"], name: "index_notices_on_created_by_id"
+  end
+
   create_table "staff", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,4 +69,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_201115) do
   add_foreign_key "drivers", "areas"
   add_foreign_key "messages", "drivers"
   add_foreign_key "messages", "staff"
+  add_foreign_key "notices", "staff", column: "created_by_id"
 end

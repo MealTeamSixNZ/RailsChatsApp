@@ -9,9 +9,9 @@
 * Sessions
 * Log in & out
 * Sign up/create drivers & staff
+* * driver to staff message sending
 
 ## To do:
-* driver to staff message sending
 * area noticeboard
 * Bring Websockets back #fashun
 * Tidy up websocket and types

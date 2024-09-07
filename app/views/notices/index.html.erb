@@ -1,0 +1,12 @@
+<h1>Notices</h1>
+
+<ul>
+  <% @notices.each do |notice| %>
+    <li>
+      <strong><%= notice.title %></strong>
+      <%= notice.content %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New notice", new_notice_path %>
