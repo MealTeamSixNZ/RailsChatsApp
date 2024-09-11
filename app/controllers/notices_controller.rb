@@ -3,7 +3,9 @@ class NoticesController < ApplicationController
   before_action :ac_only
 
   def index
-    @notices = Notice.all
+    @active_notices = Notice.active_notices
+    @expired_notices = Notice.expired_notices
+    @upcoming_notices = Notice.upcoming_notices
   end
 
   def new
@@ -14,18 +16,31 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
 
     if @notice.save
-      redirect_to :index
+      redirect_to action: "index"
     else
       render :new, status: :bad_request
     end
   end
 
   def destroy
+    @notice = Notice.find(params[:id])
+    @notice.destroy
 
+    redirect_to action: "index"
   end
 
   def edit
+    @notice = Notice.find(params[:id])
+  end
 
+  def update
+    @notice = Notice.find(params[:id])
+
+    if @notice.update(notice_params)
+      redirect_to action: "index"
+    else
+      render :edit, status: :bad_request
+    end
   end
 
   private

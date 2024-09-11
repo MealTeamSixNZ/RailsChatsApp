@@ -1,12 +1,10 @@
-<h1>Notices</h1>
+<h1>Active notices</h1>
+<%= render 'notices/notice_list', notices: @active_notices %>
 
-<ul>
-  <% @notices.each do |notice| %>
-    <li>
-      <strong><%= notice.title %></strong>
-      <%= notice.content %>
-    </li>
-  <% end %>
-</ul>
+<h1>Expired notices</h1>
+<%= render 'notices/notice_list', notices: @expired_notices %>
+
+<h1>Upcoming notices</h1>
+<%= render 'notices/notice_list', notices: @upcoming_notices %>
 
 <%= link_to "New notice", new_notice_path %>
