@@ -6,6 +6,13 @@ Rails.application.routes.draw do
 
   # get 'home/index'
   resources :messages
+  resources :navigation
+  resources :home do
+    collection do
+      get :staff, to: 'home#staff'
+      get :driver, to: 'home#driver'
+    end
+  end
   resources :staff_messages
   resources :notices do
     member do
