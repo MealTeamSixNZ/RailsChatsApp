@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_05_201337) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
   create_table "areas", force: :cascade do |t|
     t.string "name"
   end
@@ -43,13 +43,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_201337) do
   create_table "notices", force: :cascade do |t|
     t.string "title", null: false
     t.text "content"
-    t.date "start_date"
-    t.time "start_time"
-    t.date "end_date"
-    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "created_by_id"
+    t.datetime "start_datetime", default: "2024-09-13 21:06:52", null: false
+    t.datetime "end_datetime"
     t.index ["created_by_id"], name: "index_notices_on_created_by_id"
   end
 

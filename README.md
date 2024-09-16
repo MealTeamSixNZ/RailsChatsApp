@@ -15,7 +15,14 @@
 * area noticeboard
 * Bring Websockets back #fashun
 * Tidy up websocket and types
-* Websocket features: ~~onine~~, typing, ~~emojis~~
+* Websocket features: ~~onine~~, typing, ~~reacting to messages~~
+
+# Road to MVP
+* Fix expire button
+* Implement styling
+* Add navigation
+* Add migrations/seed to populate DB
+* Attempt websockets for "online/offline", "typing", and bonus: "reactions"
 
 
 ## Ideas:

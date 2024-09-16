@@ -10,6 +10,8 @@ class NoticesController < ApplicationController
 
   def new
     @notice = Notice.new
+    @notice.start_datetime = DateTime.current
+    @notice.end_datetime = nil
   end
 
   def create
@@ -43,10 +45,22 @@ class NoticesController < ApplicationController
     end
   end
 
+  def expire
+    @notice = Notice.find(params[:id])
+    @notice.end_datetime = DateTime.current
+
+    if @notice.save
+      redirect_to action: "index"
+    else
+      flash.now[:alert] = "Something went wrong"
+      render :edit, status: :bad_request
+    end
+  end
+
   private
 
   def notice_params
-    params.require(:notice).permit(:title, :content, :start_date, :start_time, :end_date, :end_time)
+    params.require(:notice).permit(:title, :content, :start_datetime, :end_datetime)
   end
 
   def ac_only
