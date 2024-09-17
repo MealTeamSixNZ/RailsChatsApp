@@ -1,20 +1,23 @@
 class NoticesController < ApplicationController
-  before_action :authenticate_staff!
-  before_action :ac_only
 
   def index
+    authenticate_any!
     @active_notices = Notice.active_notices
     @expired_notices = Notice.expired_notices
     @upcoming_notices = Notice.upcoming_notices
   end
 
   def new
+    authenticate_staff!
+    ac_only
     @notice = Notice.new
     @notice.start_datetime = DateTime.current
     @notice.end_datetime = nil
   end
 
   def create
+    authenticate_staff!
+    ac_only
     @notice = Notice.new(notice_params)
 
     if @notice.save
@@ -25,6 +28,8 @@ class NoticesController < ApplicationController
   end
 
   def destroy
+    authenticate_staff!
+    ac_only
     @notice = Notice.find(params[:id])
     @notice.destroy
 
@@ -32,10 +37,14 @@ class NoticesController < ApplicationController
   end
 
   def edit
+    authenticate_staff!
+    ac_only
     @notice = Notice.find(params[:id])
   end
 
   def update
+    authenticate_staff!
+    ac_only
     @notice = Notice.find(params[:id])
 
     if @notice.update(notice_params)
@@ -46,6 +55,8 @@ class NoticesController < ApplicationController
   end
 
   def expire
+    authenticate_staff!
+    ac_only
     @notice = Notice.find(params[:id])
     @notice.end_datetime = DateTime.current
 
@@ -67,6 +78,15 @@ class NoticesController < ApplicationController
     if current_staff.staff_type != "A"
       flash[:alert] = "Vorsicht, ACs nur!"
       redirect_to root_path
+    end
+  end
+
+  def authenticate_any!
+    if driver_signed_in? || staff_signed_in?
+      true
+    else
+      flash[:alert] = "Verboten!"
+      redirect_to home_index_path
     end
   end
 end

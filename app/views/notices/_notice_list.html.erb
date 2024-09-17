@@ -3,11 +3,13 @@
     <li>
       <strong><%= notice.title %></strong>
       <%= notice.content %>
-      <%= link_to "Destroy", notice_path(notice), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <%= link_to "Edit", edit_notice_path(notice) %>
-      <% if notice.is_expired? %>
-        <%=  link_to "Expire", expire_notice_path(notice), data: { turbo_method: :post }  %>
-      <%  end %>
+      <% if staff_signed_in? && current_staff.staff_type == "A" %>
+          <%= link_to "Destroy", notice_path(notice), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <%= link_to "Edit", edit_notice_path(notice) %>
+          <% if notice.is_expired? %>
+            <%=  link_to "Expire", expire_notice_path(notice), data: { turbo_method: :post }  %>
+          <%  end %>
+      <% end %>
     </li>
   <% end %>
 </ul>
