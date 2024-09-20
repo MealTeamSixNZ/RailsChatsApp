@@ -58,3 +58,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Run seed
+set notices to have areas

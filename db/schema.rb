@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "created_by_id"
-    t.datetime "start_datetime", default: "2024-09-13 21:06:52", null: false
+    t.datetime "start_datetime", default: "2024-09-19 23:53:39", null: false
     t.datetime "end_datetime"
     t.index ["created_by_id"], name: "index_notices_on_created_by_id"
   end
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "staff_type", default: "D", null: false
+    t.string "staff_type", default: "Dispatcher", null: false
     t.index ["email"], name: "index_staff_on_email", unique: true
     t.index ["reset_password_token"], name: "index_staff_on_reset_password_token", unique: true
   end

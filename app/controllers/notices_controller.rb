@@ -75,7 +75,7 @@ class NoticesController < ApplicationController
   end
 
   def ac_only
-    if current_staff.staff_type != "A"
+    if current_staff.staff_type != "Area Coordinator"
       flash[:alert] = "Vorsicht, ACs nur!"
       redirect_to root_path
     end

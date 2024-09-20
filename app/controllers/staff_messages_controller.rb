@@ -9,6 +9,7 @@ class StaffMessagesController < ApplicationController
 
     unless @area_id == nil
       @drivers = Driver.where(area_id:@area_id)
+      @area_name = Area.find(args[:area_id]).name
     end
   end
 
@@ -41,7 +42,7 @@ class StaffMessagesController < ApplicationController
   end
 
   def is_staff_dispatcher?
-    current_staff.staff_type == "D"
+    current_staff.staff_type == "Dispatcher"
   end
 
 end

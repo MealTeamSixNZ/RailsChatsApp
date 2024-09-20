@@ -15,7 +15,7 @@
 
 <%= form_with model: @message do |form| %>
   <div>
-    <%= form.hidden_field :message_type, value:"D" %>
+    <%= form.hidden_field :message_type, value:"Dispatcher" %>
     <%= form.label :content %><br>
     <%= form.text_field :content %>
   </div>
@@ -35,7 +35,7 @@
 
 <%= form_with model: @message do |form| %>
   <div>
-    <%= form.hidden_field :message_type, value:"A" %>
+    <%= form.hidden_field :message_type, value:"Area Coordinator" %>
     <%= form.label :content %><br>
     <%= form.text_field :content %>
   </div>
