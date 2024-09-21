@@ -2,9 +2,15 @@ class NoticesController < ApplicationController
 
   def index
     authenticate_any!
-    @active_notices = Notice.active_notices
-    @expired_notices = Notice.expired_notices
-    @upcoming_notices = Notice.upcoming_notices
+    @areas = Area.all
+    args = params.permit(:area_id)
+    @area_id = args[:area_id]
+
+    unless @area_id == nil
+      @active_notices = Notice.active_notices @area_id
+      @expired_notices = Notice.expired_notices @area_id
+      @upcoming_notices = Notice.upcoming_notices @area_id
+    end
   end
 
   def new
@@ -71,7 +77,7 @@ class NoticesController < ApplicationController
   private
 
   def notice_params
-    params.require(:notice).permit(:title, :content, :start_datetime, :end_datetime)
+    params.require(:notice).permit(:title, :content, :start_datetime, :end_datetime, :area_id)
   end
 
   def ac_only

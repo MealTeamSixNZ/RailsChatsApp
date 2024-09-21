@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_20_222735) do
   create_table "areas", force: :cascade do |t|
     t.string "name"
   end
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
     t.integer "created_by_id"
     t.datetime "start_datetime", default: "2024-09-19 23:53:39", null: false
     t.datetime "end_datetime"
+    t.integer "area_id", default: 1, null: false
+    t.index ["area_id"], name: "index_notices_on_area_id"
     t.index ["created_by_id"], name: "index_notices_on_created_by_id"
   end
 
@@ -67,5 +69,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_13_205344) do
   add_foreign_key "drivers", "areas"
   add_foreign_key "messages", "drivers"
   add_foreign_key "messages", "staff"
+  add_foreign_key "notices", "areas"
   add_foreign_key "notices", "staff", column: "created_by_id"
 end

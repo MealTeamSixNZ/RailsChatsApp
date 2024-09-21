@@ -12,19 +12,20 @@
   Area.find_or_create_by!(name: name)
 end
 
-# todo: remove
+# todo: add no duplicate to driver and staff table - migration
 [["driver1@driver.com", Area.find_by_name("Auckland").id],
  ["driver2@driver.com", Area.find_by_name("Queenstown").id],
  ["driver3@driver.com", Area.find_by_name("Wellington").id]].each do |email, area_id|
-  Driver.find_or_create_by!(email: email, area_id: area_id) do |driver|
+  Driver.find_or_create_by!(email: email) do |driver|
+    driver.area_id = area_id
     driver.password = "password"
   end
 end
 
 [["dispatcher@staff.com", "Dispatcher"], ["areacoordinator@staff.com", "Area Coordinator"]].each do |email, staff_type|
-  Staff.find_or_create_by!(email: email, staff_type: staff_type) do |staff|
+  Staff.find_or_create_by!(email: email) do |staff|
+    staff.staff_type = staff_type
     staff.password = "password"
-    staff.password_confirmation = "password"
   end
 end
 

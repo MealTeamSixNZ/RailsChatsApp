@@ -1,22 +1,37 @@
-<h1>Active notices</h1>
+<h2>Areas</h2>
+<p>You're signed in
+  as <%= current_staff.email %> <%= link_to "Log oot", destroy_staff_session_path, "data-turbo-method": :delete %></p>
 
-<%= render 'notices/notice_list', notices: @active_notices %>
-
-<br>
+<ul>
+  <% @areas.each do |area| %>
+    <li>
+      <%= link_to area.name, notices_path(area_id: area.id) %>
+    </li>
+  <% end %>
+</ul>
+<% if @active_notices != nil %>
+  <h1>Active notices</h1>
+  <%= render 'notices/notice_list', notices: @active_notices %>
+<% end %>
 
 <% if staff_signed_in? %>
+  <% if @expired_notices != nil %>
+    <h1>Expired notices</h1>
+    <%= render 'notices/notice_list', notices: @expired_notices %>
+  <% end %>
+  <% if @upcoming_notices != nil %>
+    <h1>Upcoming notices</h1>
+    <%= render 'notices/notice_list', notices: @upcoming_notices %>
+  <% end %>
   <%= link_to "New notice", new_notice_path %>
-  <h1>Expired notices</h1>
-  <%= render 'notices/notice_list', notices: @expired_notices %>
-  <h1>Upcoming notices</h1>
-  <%= render 'notices/notice_list', notices: @upcoming_notices %>
-  <p>You're signed in as <%= current_staff.email %>
+<% else %>
+  <p>Select an area to display notices</p>
 <% end %>
 
 <br><br>
 
 <% if staff_signed_in? %>
   <%= link_to 'back', staff_home_index_path %>
-<% elsif driver_signed_in?%>
+<% elsif driver_signed_in? %>
   <%= link_to 'back', driver_home_index_path %>
 <% end %>
