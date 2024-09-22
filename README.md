@@ -1,6 +1,8 @@
 # RailsChatsApp
 Run ```rails db:create```, ```rails db:migrate```, ```rails db:seed```, ```rails server```, and navigate to localhost.
 
+Sign-in credentials are found in seeds.rb
+
 ## Running:
 * User sign-up and sign-in
 * Database for users, messages, notices, and areas

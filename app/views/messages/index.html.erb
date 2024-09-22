@@ -5,9 +5,6 @@
   <% @dispatch_messages.each do | message | %>
     <li>
       <%= message.content %>
-      <%= message.message_type %>
-      <%= if message.staff_id == nil then "Me" else "Staff" end %>
-      <%= message.driver_id %>
     </li>
   <% end %>
 </ul>
@@ -27,7 +24,6 @@
   <% @area_messages.each do | message | %>
     <li>
       <%= message.content %>
-      <%= message.driver_id %>
     </li>
   <% end %>
 </ul>
