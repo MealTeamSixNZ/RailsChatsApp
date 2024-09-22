@@ -1,7 +1,6 @@
 class StaffMessagesController < ApplicationController
   before_action :authenticate_staff!
 
-
   def index
     @areas = Area.all
     args = params.permit(:area_id)
@@ -44,5 +43,4 @@ class StaffMessagesController < ApplicationController
   def is_staff_dispatcher?
     current_staff.staff_type == "Dispatcher"
   end
-
 end

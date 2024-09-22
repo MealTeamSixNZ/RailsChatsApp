@@ -1,18 +1,8 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-#
 ["Auckland", "Queenstown", "Wellington"].each do |name|
   Area.find_or_create_by!(name: name)
 end
 
-# todo: add no duplicate to driver and staff table - migration
+# todo: add unique trait to emails for driver and staff table as migration to avoid duplicates
 [["driver1@driver.com", Area.find_by_name("Auckland").id],
  ["driver2@driver.com", Area.find_by_name("Queenstown").id],
  ["driver3@driver.com", Area.find_by_name("Wellington").id]].each do |email, area_id|

@@ -1,5 +1,10 @@
-<h1>Home#index</h1>
-
-<%= link_to "Driver Sign-in", new_driver_session_path %><br><br>
-
-<%= link_to "Staff Sign-in", new_staff_session_path %>
+<h1>Welcome to New Chat & Notices</h1>
+<p>Please select driver or staff to sign-in</p>
+<ul>
+  <li>
+    <%= link_to "Driver", new_driver_session_path %>
+  </li>
+  <li>
+    <%= link_to "Staff", new_staff_session_path %>
+  </li>
+</ul>

@@ -1,63 +1,22 @@
-# ChatsApp on Rails
+# RailsChatsApp
+Run ```rails db:create```, ```rails db:migrate```, ```rails db:seed```, ```rails server```, and navigate to localhost.
 
-
-## Currently running:
-* Concepting users
-* Database for users, DMs, messages, & sessions
-* hashed passwords
-* per user salted passwords
+## Running:
+* User sign-up and sign-in
+* Database for users, messages, notices, and areas
+* Per user salted and encrypted passwords
 * Sessions
-* Log in & out
-* Sign up/create drivers & staff
-* * driver to staff message sending
+* Driver to staff and staff to driver messaging
+* Noticeboard for areas
+* Scheduling for notices
+* Basic navigation
 
-## To do:
-* area noticeboard
-* Bring Websockets back #fashun
-* Tidy up websocket and types
-* Websocket features: ~~onine~~, typing, ~~reacting to messages~~
+## MVP to do:
+* Unified navigation/UX
+* Websocket features: online status, typing, and reactions to messages
+* Validations and testing
 
-# Road to MVP
-* Fix expire button
-* Implement styling
-* Add navigation
-* Add migrations/seed to populate DB
-* Attempt websockets for "online/offline", "typing", and bonus: "reactions"
-
-
-## Ideas:
-* Webtraffic over TOR
+## Ideas for privacy focused personal messaging ChatsApp fork:
+* Traffic over TOR
 * Device/session based message encryption
-* Messages saved on device not in DB
-
-sender id important for auditing (internal id)
-recipient id important (who the message is going to, nil when notice board)
-message type (area coord or dispatcher, notice board)
-area id (qtown/ashburton/etc)
-expiry nullable 
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-Run seed
-set notices to have areas
+* Messages not in DB
